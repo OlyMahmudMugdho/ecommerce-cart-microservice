@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import prisma from "./prisma/prisma.js";
+import addDemoProduct from "./utils/addDemoProduct.js";
 dotenv.config();
 
 const app = express();
@@ -22,6 +23,7 @@ app.get("/", (req, res) => {
         message: "hello world"
     });
 });
+
 
 app.listen(PORT, async () => {
     try {
