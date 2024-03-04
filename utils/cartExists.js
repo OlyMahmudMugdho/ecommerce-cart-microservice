@@ -7,7 +7,7 @@ const cartExists = async (userId) => {
                 userId: userId
             }
         });
-        cart ? true : false;
+        cart ? cart : false;
     }
     catch (error) {
         console.error(error);
@@ -15,3 +15,4 @@ const cartExists = async (userId) => {
     }
     return true;
 }
+export default cartExists;

@@ -3,4 +3,3 @@ node_modules
 .gitignore
 .env
 prisma/migrations
-controllers
