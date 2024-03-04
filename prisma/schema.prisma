@@ -14,8 +14,24 @@ datasource db {
 }
 
 model Product {
-  id String @id @default(uuid())
-  name String
-  price Float
+  id         String   @id @default(uuid())
+  name       String
+  price      Float
+  cart       Cart     @relation(fields: [cartId], references: [id])
+  cartId     String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
   @@map("products")
+}
+
+model Cart {
+  id         String    @id @default(uuid())
+  userId     String
+  totalPrice Float
+  products   Product[]
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+
+  @@map("cart")
 }
