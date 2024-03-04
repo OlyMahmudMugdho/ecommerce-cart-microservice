@@ -4,15 +4,20 @@ const cartExists = async (userId) => {
     try {
         const cart = await prisma.cart.findFirst({
             where: {
-                userId: userId
+                userId: `${userId}`
             }
         });
-        cart ? cart : false;
+
+        if (!cart?.id) {
+            return false;
+        }
+        else {
+            return cart;
+        }
     }
     catch (error) {
         console.error(error);
         return false;
     }
-    return true;
 }
 export default cartExists;

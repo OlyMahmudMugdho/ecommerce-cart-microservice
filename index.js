@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import prisma from "./prisma/prisma.js";
-import addDemoProduct from "./utils/addDemoProduct.js";
+import cartRoutes from "./routes/cart.route.js";
 dotenv.config();
 
 const app = express();
@@ -23,6 +23,8 @@ app.get("/", (req, res) => {
         message: "hello world"
     });
 });
+
+app.use("/api/cart", cartRoutes);
 
 
 app.listen(PORT, async () => {

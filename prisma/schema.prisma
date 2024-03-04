@@ -17,6 +17,7 @@ model Product {
   id          String   @id @default(uuid())
   name        String
   price       Float
+  quantity    Float
   cart        Cart?    @relation(fields: [cartId], references: [id])
   cartId      String?
   description String?
