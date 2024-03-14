@@ -13,7 +13,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Product {
+model CartItem {
   id          String   @id @default(uuid())
   name        String
   price       Float
@@ -25,14 +25,14 @@ model Product {
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 
-  @@map("products")
+  @@map("cartitem")
 }
 
 model Cart {
   id         String    @id @default(uuid())
   userId     String?
   totalPrice Float     @default(0)
-  products   Product[]
+  products   CartItem[]
   created_at DateTime  @default(now())
   updated_at DateTime  @updatedAt
 
