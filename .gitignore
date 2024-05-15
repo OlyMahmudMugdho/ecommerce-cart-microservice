@@ -1,5 +1,8 @@
 node_modules
 # Keep environment variables out of version control
-.gitignore
+
+
 .env
 prisma/migrations
+utils
+.gitignore

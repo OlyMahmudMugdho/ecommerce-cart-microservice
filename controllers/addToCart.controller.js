@@ -4,16 +4,23 @@ import createCart from "../utils/createCart.js"
 const addToCart = async (req, res) => {
     const { userId, productId, price } = req.body;
     const foundCart = await cartExists(userId);
+    
+    console.log(foundCart.totalPrice)
+
+    
+
 
     if (await foundCart) {
         try {
+            const newPrice = parseFloat(price) + foundCart.totalPrice;
+
             const cart = await prisma.cart.update({
                 where: {
                     id: foundCart.id
                 },
                 data: {
                     userId: userId,
-                    totalPrice: parseFloat(price)
+                    totalPrice: parseFloat(newPrice)
                 }
             })
 
