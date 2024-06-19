@@ -1,9 +1,11 @@
 import prisma from "../prisma/prisma.js";
 import cartExists from "../utils/cartExists.js";
-import createCart from "../utils/createCart.js"
+import createCart from "../utils/createCart.js";
+import { fetchProduct } from "../utils/fetchProduct.js";
 const addToCart = async (req, res) => {
-    const { userId, productId, price } = req.body;
+    const { userId, productId } = req.body;
 
+    const product = await fetchProduct(productId);
 
     
     const foundCart = await cartExists(userId);
