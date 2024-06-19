@@ -5,6 +5,8 @@ import morgan from "morgan";
 import bodyParser from "body-parser";
 import prisma from "./prisma/prisma.js";
 import cartRoutes from "./routes/cart.route.js";
+// import fetchAllProducts from "./utils/fetchProducts.js";
+
 dotenv.config();
 
 const app = express();
@@ -33,6 +35,7 @@ app.listen(PORT, async () => {
         await prisma.$connect();
         console.info("Connected to database");
         console.info(`Server running on port ${PORT}`);
+        // console.log(await fetchAllProducts())
         await prisma.$disconnect();
     } catch (error) {
         console.error(error);
