@@ -5,7 +5,7 @@ const createCart = async () => {
     try {
         const cart = await prisma.cart.create({
             data: {
-
+                
             }
         })
         return cart;

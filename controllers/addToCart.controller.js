@@ -7,12 +7,8 @@ const addToCart = async (req, res) => {
 
     
     const foundCart = await cartExists(userId);
-    
-    return res.status(200).json({
-        "result" : foundCart
-    })
 
-    console.log(foundCart.totalPrice)
+    //console.log(foundCart.totalPrice)
 
     
 
