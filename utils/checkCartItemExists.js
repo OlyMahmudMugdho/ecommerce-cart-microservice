@@ -1,7 +1,7 @@
-import prisma from "../prisma/prisma"
+import prisma from "../prisma/prisma.js"
 
-export const checkCartItemExists = async (productId, cartId) => {
-    const product = await prisma.cartItem.findUnique({
+const checkCartItemExists = async (productId, cartId) => {
+    const product = await prisma.cartItem.findFirst({
         where: {
             productId,
             cartId
@@ -9,3 +9,5 @@ export const checkCartItemExists = async (productId, cartId) => {
     })
     return await product;
 }
+
+export default checkCartItemExists

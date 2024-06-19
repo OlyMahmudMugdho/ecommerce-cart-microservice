@@ -29,7 +29,7 @@ model CartItem {
 
 model Cart {
   id         String     @id @default(uuid())
-  userId     String?
+  userId     String?    @unique
   totalPrice Float      @default(0)
   products   CartItem[]
   created_at DateTime   @default(now())
