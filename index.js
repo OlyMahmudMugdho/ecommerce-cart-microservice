@@ -5,7 +5,7 @@ import morgan from "morgan";
 import bodyParser from "body-parser";
 import prisma from "./prisma/prisma.js";
 import cartRoutes from "./routes/cart.route.js";
-// import fetchAllProducts from "./utils/fetchProducts.js";
+//import fetchAllProducts from "./utils/fetchProducts.js";
 
 dotenv.config();
 

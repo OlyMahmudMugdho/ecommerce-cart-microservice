@@ -1,7 +1,10 @@
+.gitignore
 node_modules
+.env
+prisma/migrations
+utils/fetchProduct.js
 # Keep environment variables out of version control
 
 
-.env
-prisma/migrations
+utils/checkProductExists.js
 .gitignore
