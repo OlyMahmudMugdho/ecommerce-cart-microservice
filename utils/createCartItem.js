@@ -1,6 +1,6 @@
 import prisma from "../prisma/prisma";
 
-const createCartItem = async (productId,cartId, name, price, quantity) => {
+export const createCartItem = async (productId,cartId, name, price, quantity) => {
     try {
         const item = await prisma.cartItem.create({
             data : {
