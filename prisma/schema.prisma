@@ -21,8 +21,6 @@ model CartItem {
   quantity    Float
   cart        Cart?    @relation(fields: [cartId], references: [id])
   cartId      String?
-  description String?
-  category    String?
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 
