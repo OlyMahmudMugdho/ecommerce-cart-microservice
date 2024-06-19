@@ -15,6 +15,7 @@ datasource db {
 
 model CartItem {
   id          String   @id @default(uuid())
+  productId   Decimal
   name        String
   price       Float
   quantity    Float
@@ -29,12 +30,12 @@ model CartItem {
 }
 
 model Cart {
-  id         String    @id @default(uuid())
+  id         String     @id @default(uuid())
   userId     String?
-  totalPrice Float     @default(0)
+  totalPrice Float      @default(0)
   products   CartItem[]
-  created_at DateTime  @default(now())
-  updated_at DateTime  @updatedAt
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
 
   @@map("cart")
 }
