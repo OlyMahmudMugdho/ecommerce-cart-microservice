@@ -3,8 +3,15 @@ import cartExists from "../utils/cartExists.js";
 import createCart from "../utils/createCart.js"
 const addToCart = async (req, res) => {
     const { userId, productId, price } = req.body;
+
+
+    
     const foundCart = await cartExists(userId);
     
+    return res.status(200).json({
+        "result" : foundCart
+    })
+
     console.log(foundCart.totalPrice)
 
     

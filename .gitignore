@@ -4,4 +4,3 @@ node_modules
 prisma/migrations
 # Keep environment variables out of version control
 
-utils/checkProductExists.js
