@@ -4,21 +4,51 @@ import checkCartItemExists from "../utils/checkCartItemExists.js";
 import createCart from "../utils/createCart.js";
 import { fetchProduct } from "../utils/fetchProduct.js";
 import { createCartItem } from "../utils/createCartItem.js";
+import { getCart } from "../utils/getCart.js";
 const addToCart = async (req, res) => {
     const { userId, productId, quantity } = req.body;
 
     const product = await fetchProduct(productId);
 
 
-    const foundCart = await cartExists(userId);
+    const cartAlreadyExists = await cartExists(userId);
 
     //console.log(foundCart.totalPrice)
 
 
 
 
-    if (await foundCart) {
+    if (await cartAlreadyExists) {
         try {
+
+            const foundCart = await getCart(userId);
+
+            const cartId = await foundCart.id;
+
+            let cartItem = await checkCartItemExists(productId, cartId);
+
+            if (await cartItem == null) {
+                cartItem = await createCartItem(
+                    productId,
+                    cartId,
+                    await product.name,
+                    await parseFloat(product.price),
+                    parseFloat(quantity),
+                )
+            }
+            else {
+                cartItem = await prisma.cartItem.update({
+                    where: {
+                        id: await cartItem.id,
+                    },
+                    data: {
+                        quantity: parseFloat(cartItem.quantity) + parseFloat(quantity)
+                    }
+                })
+            }
+
+            const price = parseFloat(product.price) * quantity
+
             const newPrice = parseFloat(price) + foundCart.totalPrice;
 
             const cart = await prisma.cart.update({
@@ -48,9 +78,7 @@ const addToCart = async (req, res) => {
     }
 
     else {
-        const newCart = await createCart();
-
-
+        const newCart = await createCart(userId);
 
         const cartId = await newCart.id;
 
@@ -63,7 +91,7 @@ const addToCart = async (req, res) => {
                 await product.name,
                 await parseFloat(product.price),
                 parseFloat(quantity),
-                
+
             )
         }
         else {
@@ -72,7 +100,7 @@ const addToCart = async (req, res) => {
                     id: await cartItem.id,
                 },
                 data: {
-                    quantity: await cartItem.quantity + quantity
+                    quantity:  parseFloat(cartItem.quantity) + parseFloat(quantity)
                 }
             })
         }
