@@ -8,6 +8,7 @@ import { getCart } from "../utils/getCart.js";
 const addToCart = async (req, res) => {
     const { userId, productId, quantity } = req.body;
 
+
     const product = await fetchProduct(productId);
 
 

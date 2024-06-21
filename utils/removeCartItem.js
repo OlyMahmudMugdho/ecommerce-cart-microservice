@@ -1,10 +1,10 @@
 import prisma from "../prisma/prisma.js"
 
 
-export const removeCartItem = async (cartItemId) => {
+export const removeCartItem = async (userId, cartItemId) => {
     const cartItem = await prisma.cartItem.findUnique({
         where: {
-            id : cartItemId
+            id: cartItemId
         }
     })
 
@@ -16,17 +16,17 @@ export const removeCartItem = async (cartItemId) => {
 
     const removedCartItem = await prisma.cartItem.delete({
         where: {
-            id : cartItemId
+            id: cartItemId
         }
     })
     console.log(removedCartItem)
-    
+
     const updatedCart = await prisma.cart.update({
-        where : {
-            userId : userId
+        where: {
+            userId: userId
         },
-        data : {
-            totalPrice : parseFloat(totalPrice - reducedPrice)
+        data: {
+            totalPrice: parseFloat(totalPrice - reducedPrice)
         }
     })
 
