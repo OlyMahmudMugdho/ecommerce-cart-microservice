@@ -6,7 +6,7 @@ const router = express.Router();
 router.route('/add')
     .post(addToCart)
 
-router.route('/remove/:userId/:productId')
+router.route('/remove/:userId/:cartItemId')
     .delete(removeFromCart)
 
 
