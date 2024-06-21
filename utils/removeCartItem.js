@@ -1,6 +1,5 @@
 import prisma from "../prisma/prisma.js"
-
-
+import { getCart } from "./getCart.js"
 export const removeCartItem = async (userId, cartItemId) => {
     const cartItem = await prisma.cartItem.findUnique({
         where: {
@@ -21,12 +20,16 @@ export const removeCartItem = async (userId, cartItemId) => {
     })
     console.log(removedCartItem)
 
+    const foundCart = await getCart(userId);
+
+    console.log(parseFloat(await foundCart.totalPrice) - parseFloat(reducedPrice))
+
     const updatedCart = await prisma.cart.update({
         where: {
             userId: userId
         },
         data: {
-            totalPrice: parseFloat(totalPrice - reducedPrice)
+            totalPrice: parseFloat(await foundCart.totalPrice) - parseFloat(reducedPrice)
         }
     })
 
