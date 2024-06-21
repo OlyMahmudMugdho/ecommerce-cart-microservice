@@ -9,8 +9,21 @@ const addToCart = async (req, res) => {
     const { userId, productId, quantity } = req.body;
 
 
-    const product = await fetchProduct(productId);
+    try {
+        const product = await fetchProduct(productId);
 
+        if (!product) {
+            return res.status(404).json({
+                "error": true,
+                "message": "product not found"
+            })
+        }
+    } catch (error) {
+        return res.status(500).json({
+            "error": true,
+            "message": "internal server error"
+        })
+    }
 
     const cartAlreadyExists = await cartExists(userId);
 
@@ -101,7 +114,7 @@ const addToCart = async (req, res) => {
                     id: await cartItem.id,
                 },
                 data: {
-                    quantity:  parseFloat(cartItem.quantity) + parseFloat(quantity)
+                    quantity: parseFloat(cartItem.quantity) + parseFloat(quantity)
                 }
             })
         }
