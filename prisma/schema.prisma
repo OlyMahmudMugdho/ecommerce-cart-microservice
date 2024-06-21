@@ -15,6 +15,7 @@ datasource db {
 
 model CartItem {
   id          String   @id @default(uuid())
+  userId      String
   productId   Decimal
   name        String
   price       Float

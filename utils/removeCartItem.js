@@ -1,4 +1,4 @@
-import prisma from "../prisma/prisma"
+import prisma from "../prisma/prisma.js"
 
 
 export const removeCartItem = async (userId, productId) => {
