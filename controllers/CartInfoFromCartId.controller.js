@@ -25,6 +25,7 @@ export const cartInfoFromCartId = async (req, res) => {
             "data": cart
         })
     } catch (error) {
+        console.log(error)
         return res.status(500).json({
             "error": true,
             "message": "internal server error"

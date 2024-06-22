@@ -13,7 +13,7 @@ export const getCartInfoFromUserId = async (userId) => {
 export const getCartInfoFromCartId = async (cartId) => {
     const cart = await prisma.cart.findUnique({
         where : {
-            cartId : cartId
+            id : cartId
         }
     })
     return await cart
