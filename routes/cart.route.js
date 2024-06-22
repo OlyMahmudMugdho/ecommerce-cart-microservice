@@ -2,7 +2,11 @@ import express from "express";
 import addToCart from "../controllers/addToCart.controller.js";
 import removeFromCart from "../controllers/removeFromCart.controller..js";
 import { deleteCart } from "../controllers/deleteCart.controller.js";
+import { cartInfoFromUserId } from "../controllers/CartInfoFromUserId.controller.js";
 const router = express.Router();
+
+router.route('/')
+    .get(cartInfoFromUserId)
 
 router.route('/add')
     .post(addToCart)
