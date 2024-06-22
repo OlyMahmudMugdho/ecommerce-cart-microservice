@@ -1,4 +1,4 @@
-import { getCartInfoFromUserId } from "../utils/getCartInfo"
+import { getCartInfoFromUserId } from "../utils/getCartInfo.js"
 
 
 export const cartInfoFromUserId = async (req, res) => {
