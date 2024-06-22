@@ -5,7 +5,7 @@ import { deleteCart } from "../controllers/deleteCart.controller.js";
 import { cartInfoFromUserId } from "../controllers/CartInfoFromUserId.controller.js";
 const router = express.Router();
 
-router.route('/')
+router.route('/:userId')
     .get(cartInfoFromUserId)
 
 router.route('/add')
