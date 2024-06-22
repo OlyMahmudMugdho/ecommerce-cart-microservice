@@ -8,9 +8,10 @@ import { getCart } from "../utils/getCart.js";
 const addToCart = async (req, res) => {
     const { userId, productId, quantity } = req.body;
 
+    let product;
 
     try {
-        const product = await fetchProduct(productId);
+        product = await fetchProduct(productId);
 
         if (!product) {
             return res.status(404).json({
