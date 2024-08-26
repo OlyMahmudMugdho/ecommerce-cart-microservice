@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("tiny"));
 const PORT = 8083;
 
-app.get("/", (req, res) => {
+app.get("/cart", (req, res) => {
     res.json({
         ok: true,
         success: true,
@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
     });
 });
 
-app.use("/api/cart", cartRoutes);
+app.use("/cart/api/cart", cartRoutes);
 
 
 app.listen(PORT, async () => {
